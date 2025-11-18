@@ -1,7 +1,7 @@
 <div align="left">
 <h1 align="center">PhysX-Anything: Simulation-Ready Physical 3D Assets from Single Image
 </h1>
-<p align="center"><a href="https://arxiv.org/abs/2507.12465"><img src='https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv&logoColor=white' alt='arXiv'></a>
+<p align="center"><a href="https://arxiv.org/abs/2511.13648"><img src='https://img.shields.io/badge/arXiv-Paper-red?logo=arxiv&logoColor=white' alt='arXiv'></a>
 <a href='https://physx-anything.github.io/'><img src='https://img.shields.io/badge/Project_Page-Website-green?logo=homepage&logoColor=white' alt='Project Page'></a>
 <a href='https://huggingface.co/datasets/Caoza/PhysX-Mobility'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue'></a>
 <a href='https://youtu.be/okMms-NdxMk'><img src='https://img.shields.io/youtube/views/okMms-NdxMk'></a>
