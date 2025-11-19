@@ -39,7 +39,7 @@ git clone --recurse-submodules https://github.com/ziangcao0312/PhysX-Anything.gi
 cd PhysX-Anything 
 ```
 
-2. Create a new conda environment named `physxgen` and install the dependencies:
+2. Create a new conda environment named `physx-anything` and install the dependencies:
 
 ```bash
 . ./setup.sh --new-env --basic --xformers --flash-attn --diffoctreerast --spconv --mipgaussian --kaolin --nvdiffrast
