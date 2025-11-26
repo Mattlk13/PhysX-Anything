@@ -111,11 +111,7 @@ def face_majority_label(mesh: trimesh.Trimesh, vlabels, vdist):
 
 
 def ensure_nonempty_per_label(mesh, flabels, label_to_points, min_faces=10):
-    """
-    保证每类至少包含若干三角面。若空：
-      - 以该类点云质心在 mesh 上找最近三角形作为种子
-      - 邻接扩张直至 min_faces
-    """
+
     labels_sorted = sorted(label_to_points.keys(), key=lambda x: int(x))
     F = mesh.faces.shape[0]
     adj = mesh.face_adjacency  # (M,2)

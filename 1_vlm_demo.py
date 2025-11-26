@@ -45,11 +45,7 @@ def ints_to_space_separated_str(arr: np.ndarray) -> str:
 
 
 def merge_adjacent_to_dash(s: str) -> str:
-    """
-    输入: 空格分隔的升序整数串（建议先排序/去重）
-    输出: 将相邻连续的部分合并为 a-b
-    例: "0 1 2 5 6 8" -> "0-2 5-6 8"
-    """
+
     if not s.strip():
         return ""
 
@@ -71,10 +67,7 @@ def merge_adjacent_to_dash(s: str) -> str:
 
 
 def dash_str_to_ints(s: str) -> np.ndarray:
-    """
-    输入: 如 "184 198 199-216 230-237"
-    输出: 升序且去重的一维整数 np.ndarray
-    """
+
     if not s.strip():
         return np.array([], dtype=np.int64)
 
