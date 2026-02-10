@@ -765,19 +765,35 @@ def generate_mjcf(
                 })
         elif jsondata['group_info'][str(group_idx)][-1]=='C':
             movable_body = ET.SubElement(world, "body", attrib={"name": "grouppart_"+str(group_idx), "pos": "0 0 0"})
-            ET.SubElement(
-                movable_body, "joint",
-                attrib={
-                    "type": "hinge",
-                    "name": "pivot_"+str(group_idx),
-                    "axis": " ".join(map(str, jsondata['group_info'][str(group_idx)][2][:3])),
-                    "pos": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][3:6])*dimscale).tolist())),
-                    "range": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][6:8])*np.pi).tolist())),
-                    "damping": "0.001",
-                    "frictionloss": "0.0",
-                    "stiffness": "0"
-                }
-            )
+            if jsondata['group_info'][str(group_idx)][2][6]==-1 and jsondata['group_info'][str(group_idx)][2][7]==1:
+                ET.SubElement(
+                    movable_body, "joint",
+                    attrib={
+                        "type": "hinge",
+                        "name": "pivot_"+str(group_idx),
+                        "axis": " ".join(map(str, jsondata['group_info'][str(group_idx)][2][:3])),
+                        "pos": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][3:6])*dimscale).tolist())),
+                        "range": " ".join(map(str, (np.array([-3000,3000])*np.pi).tolist())),
+                        "damping": "0.001",
+                        "frictionloss": "0.0",
+                        "stiffness": "0"
+                    }
+                )
+            
+            else:
+                ET.SubElement(
+                    movable_body, "joint",
+                    attrib={
+                        "type": "hinge",
+                        "name": "pivot_"+str(group_idx),
+                        "axis": " ".join(map(str, jsondata['group_info'][str(group_idx)][2][:3])),
+                        "pos": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][3:6])*dimscale).tolist())),
+                        "range": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][6:8])*np.pi).tolist())),
+                        "damping": "0.001",
+                        "frictionloss": "0.0",
+                        "stiffness": "0"
+                    }
+                )
             
             for idx in jsondata['group_info'][str(group_idx)][0]:
                 part = parts_cfg[idx]
@@ -807,19 +823,36 @@ def generate_mjcf(
                 })
         elif jsondata['group_info'][str(group_idx)][-1]=='CB':
             movable_body = ET.SubElement(world, "body", attrib={"name": "grouppart_"+str(group_idx), "pos": "0 0 0"})
-            ET.SubElement(
-                movable_body, "joint",
-                attrib={
-                    "type": "hinge",
-                    "name": "pivot_"+str(group_idx),
-                    "axis": " ".join(map(str, jsondata['group_info'][str(group_idx)][2][:3])),
-                    "pos": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][3:6])*dimscale).tolist())),
-                    "range": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][6:8])*np.pi).tolist())),
-                    "damping": "0.001",
-                    "frictionloss": "0.0",
-                    "stiffness": "0"
-                }
-            )
+
+            if jsondata['group_info'][str(group_idx)][2][6]==-1 and jsondata['group_info'][str(group_idx)][2][7]==1:
+                ET.SubElement(
+                    movable_body, "joint",
+                    attrib={
+                        "type": "hinge",
+                        "name": "pivot_"+str(group_idx),
+                        "axis": " ".join(map(str, jsondata['group_info'][str(group_idx)][2][:3])),
+                        "pos": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][3:6])*dimscale).tolist())),
+                        "range": " ".join(map(str, (np.array([-3000,3000])*np.pi).tolist())),
+                        "damping": "0.001",
+                        "frictionloss": "0.0",
+                        "stiffness": "0"
+                    }
+                )
+
+            else:
+                ET.SubElement(
+                    movable_body, "joint",
+                    attrib={
+                        "type": "hinge",
+                        "name": "pivot_"+str(group_idx),
+                        "axis": " ".join(map(str, jsondata['group_info'][str(group_idx)][2][:3])),
+                        "pos": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][3:6])*dimscale).tolist())),
+                        "range": " ".join(map(str, (np.array(jsondata['group_info'][str(group_idx)][2][6:8])*np.pi).tolist())),
+                        "damping": "0.001",
+                        "frictionloss": "0.0",
+                        "stiffness": "0"
+                    }
+                )
             ET.SubElement(
                 movable_body, "joint",
                 attrib={
@@ -1294,14 +1327,21 @@ if __name__ == '__main__':
                         add_fixed_joint(robot, 'joint_fixed_'+'abstract_'+str(parentgroupindex)+'_'+str(childgroupindex), 'abstract_'+str(parentgroupindex)+'_'+str(childgroupindex), childgroupname, xyz=pointrev, rpy="0 0 0")
 
                         
-
-                        joint = ET.SubElement(robot, "joint", name='joint_revolute_'+parentgroupname+'_'+'abstract_'+str(parentgroupindex)+'_'+str(childgroupindex), type="revolute")
+                        if mov[str(groupindex)][-2][-2]==-1 and mov[str(groupindex)][-2][-1]==1:
+                            joint = ET.SubElement(robot, "joint", name='joint_revolute_'+parentgroupname+'_'+'abstract_'+str(parentgroupindex)+'_'+str(childgroupindex), type="continuous")
+                        else:
+                            joint = ET.SubElement(robot, "joint", name='joint_revolute_'+parentgroupname+'_'+'abstract_'+str(parentgroupindex)+'_'+str(childgroupindex), type="revolute")
                         ET.SubElement(joint, "parent", link=parentgroupname)
                         ET.SubElement(joint, "child", link='abstract_'+str(parentgroupindex)+'_'+str(childgroupindex))
 
                         ET.SubElement(joint, "origin", xyz=point, rpy="0 0 0")
                         ET.SubElement(joint, "axis", xyz=xyz)  
-                        ET.SubElement(joint, "limit", lower=str(mov[str(groupindex)][-2][-2]*np.pi), upper=str(mov[str(groupindex)][-2][-1]*np.pi), effort="2000.0", velocity="2.0")
+
+                        if mov[str(groupindex)][-2][-2]==-1 and mov[str(groupindex)][-2][-1]==1:
+                            ET.SubElement(joint, "limit", effort="2000.0", velocity="2.0")
+                        else:
+
+                            ET.SubElement(joint, "limit", lower=str(mov[str(groupindex)][-2][-2]*np.pi), upper=str(mov[str(groupindex)][-2][-1]*np.pi), effort="2000.0", velocity="2.0")
 
                     elif mov[str(groupindex)][-1]=='D': 
                         save+=1
@@ -1363,14 +1403,20 @@ if __name__ == '__main__':
                         ET.SubElement(joint, "axis", xyz=xyz1)  
                         ET.SubElement(joint, "limit", lower=str(mov[str(groupindex)][-2][-2]), upper=str(mov[str(groupindex)][-2][-1]), effort="2000.0", velocity="2.0")
 
-
-                        joint = ET.SubElement(robot, "joint", name='joint_revo_x_'+parentgroupname+'_'+'abstract_'+str(parentgroupindex)+'_'+str(childgroupindex), type="revolute")
+                        if mov[str(groupindex)][-2][6]==-1 and mov[str(groupindex)][-2][7]==1:
+                            joint = ET.SubElement(robot, "joint", name='joint_revo_x_'+parentgroupname+'_'+'abstract_'+str(parentgroupindex)+'_'+str(childgroupindex), type="continuous")
+                        else:
+                            joint = ET.SubElement(robot, "joint", name='joint_revo_x_'+parentgroupname+'_'+'abstract_'+str(parentgroupindex)+'_'+str(childgroupindex), type="revolute")
                         ET.SubElement(joint, "parent", link='abstract_x_'+str(parentgroupindex)+'_'+str(childgroupindex))
                         ET.SubElement(joint, "child", link='abstract_'+str(parentgroupindex)+'_'+str(childgroupindex))
 
                         ET.SubElement(joint, "origin", xyz="0 0 0", rpy="0 0 0")
                         ET.SubElement(joint, "axis", xyz=xyz)  
-                        ET.SubElement(joint, "limit", lower=str(mov[str(groupindex)][-2][6]*np.pi), upper=str(mov[str(groupindex)][-2][7]*np.pi), effort="2000.0", velocity="2.0")
+
+                        if mov[str(groupindex)][-2][6]==-1 and mov[str(groupindex)][-2][7]==1:
+                            ET.SubElement(joint, "limit", effort="2000.0", velocity="2.0")
+                        else:
+                            ET.SubElement(joint, "limit", lower=str(mov[str(groupindex)][-2][6]*np.pi), upper=str(mov[str(groupindex)][-2][7]*np.pi), effort="2000.0", velocity="2.0")
 
 
                     else:
