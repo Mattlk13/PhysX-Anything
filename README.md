@@ -26,6 +26,7 @@
 
 ## 🏆 News
 
+- PhysX-Anything has been accepted by CVPR 2026🎉
 - We release the fine-tuning code of PhysX-Anything🎉
 - We release the inference code of PhysX-Anything and our new dataset PhysX-Mobility 🎉
 
