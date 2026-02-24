@@ -148,7 +148,13 @@ python render_urdf.py
 python evaluation_kine.py
 ```
 
-**Note**: For all other physical attributes, PhysX-Anything adopts the same settings as [PhysX-3D](https://github.com/ziangcao0312/PhysX-3D).
+3. For all other physical attributes, please run the script.
+
+```bash
+python evaluation_phy.py
+```
+
+
 
 ## PhysX-Mobility
 
