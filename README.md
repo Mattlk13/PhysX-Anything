@@ -67,7 +67,7 @@ pip install -r requirements.txt
 
 ### Training
 
-1. Dataset download [PhysXNet](https://huggingface.co/datasets/Caoza/PhysX-3D) and [PhysX-Mobility](https://huggingface.co/datasets/Caoza/PhysX-Mobility)
+1. Download PhysX datasets from [PhysXNet](https://huggingface.co/datasets/Caoza/PhysX-3D) and [PhysX-Mobility](https://huggingface.co/datasets/Caoza/PhysX-Mobility)
 
 2. Run the preprocessing script. 
 
@@ -80,7 +80,11 @@ pip install -r requirements.txt
 
    **Note**: Here is a template for you to check the format: [template](https://github.com/ziangcao0312/PhysX-Anything/blob/main/dataset/training_data_template.json).
 
-3. Render the conditioning images (25 images per object) based on your requirements. We use [render_cond.py](https://github.com/microsoft/TRELLIS/blob/main/DATASET.md) to generate the conditioning images.
+3. Render the conditioning images (25 images per object) based on your requirements. 
+
+   For PhysX-Mobility, we use [dataset_toolkits/render_cond_mobility.py](https://github.com/ziangcao0312/PhysX-Anything/tree/main/dataset_toolits) to generate the conditioning images. 
+
+   For PhysXNet, please check [PhysX-3D/dataset_toolkits/precess.sh](https://github.com/ziangcao0312/PhysX-3D/blob/main/dataset_toolkits/precess.sh)
 
 4. Set the path in train [configuration](https://github.com/ziangcao0312/PhysX-Anything/blob/main/qwen-vl-finetune/qwenvl/data/__init__.py)
 
