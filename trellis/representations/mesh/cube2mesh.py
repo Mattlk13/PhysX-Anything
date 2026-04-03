@@ -10,7 +10,7 @@ class MeshExtractResult:
         vertices,
         faces,
         vertex_attrs=None,
-        res=64
+        res=64,
         render_vis=None,
     ):
         self.vertices = vertices
