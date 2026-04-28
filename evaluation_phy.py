@@ -173,8 +173,8 @@ for name in namelist:
         allrenobj_eval = trimesh.util.concatenate([eachpart1,allrenobj_eval])
 
         sourcedata=np.zeros((len(eachpart1.vertices),3))
-        sourcedata[:,0]=jsongtdata['parts'][part]['priority_rank']
-        sourcedata[:,1]=float(jsongtdata['parts'][part]['density'].split(' ')[0])
+        sourcedata[:,0]=jsonevaldata['parts'][part]['priority_rank']
+        sourcedata[:,1]=float(jsonevaldata['parts'][part]['density'].split(' ')[0])
         if part==description_ind_eval:
             sourcedata[:,2]=1
         else:
